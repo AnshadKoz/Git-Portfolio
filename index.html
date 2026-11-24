@@ -1,107 +1,439 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A personal Git and DevOps learning portfolio project.">
-  <title>GitLab — DevOps Learning Portfolio</title>
+  <title>Anshad | Git & DevOps Learning</title>
+
   <style>
     :root {
-      --bg: #0a0d14;
-      --surface: #111722;
-      --surface-2: #171f2d;
-      --text: #f3f6fc;
-      --muted: #9aa8bb;
-      --line: #263244;
-      --blue: #65a9ff;
-      --green: #71e0ad;
-      --orange: #ffb86b;
+      --bg: #f8f9ff;
+      --surface: #ffffff;
+      --surface-2: #f1f2ff;
+      --text: #17172e;
+      --muted: #70718a;
+      --line: #e6e7f2;
+      --primary: #6558e8;
+      --secondary: #8b7cf6;
+      --accent: #13b89a;
+      --dark: #17172e;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.6;
     }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1080px, 90%); margin: auto; }
-    nav {
-      height: 76px; display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,.07);
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .brand { font-weight: 800; letter-spacing: -.5px; font-size: 20px; }
-    .brand span { color: var(--green); }
-    .nav-links { display: flex; gap: 27px; color: var(--muted); font-size: 14px; }
-    .nav-links a:hover { color: var(--text); }
-    .hero { padding: 100px 0 85px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; align-items: center; }
-    .eyebrow { color: var(--green); font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
-    h1 { font-size: clamp(42px, 6vw, 70px); line-height: 1.04; letter-spacing: -3px; margin: 18px 0; }
-    h1 span { color: var(--blue); }
-    .hero p { color: var(--muted); max-width: 590px; font-size: 17px; }
-    .actions { display: flex; gap: 13px; margin-top: 30px; flex-wrap: wrap; }
-    .btn { display: inline-block; padding: 12px 18px; border-radius: 8px; font-weight: 700; font-size: 14px; }
-    .primary { background: var(--green); color: #07140e; }
-    .secondary { border: 1px solid var(--line); color: var(--text); }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-weight: 850;
+      font-size: 22px;
+      letter-spacing: -1px;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 105px 0 95px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin: 20px 0;
+    }
+
+    h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 13px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 20px rgba(101,88,232,.2);
+    }
+
+    .secondary {
+      background: white;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    /* Terminal */
+
     .terminal {
-      background: #0e1420; border: 1px solid #29384c; border-radius: 13px;
-      overflow: hidden; box-shadow: 0 25px 80px rgba(0,0,0,.35);
+      background: var(--dark);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 65px rgba(31,31,75,.17);
       transform: rotate(1deg);
     }
-    .terminal-top { padding: 13px 16px; border-bottom: 1px solid #263244; color: #8e9db1; font-size: 12px; }
-    .dots { display: inline-flex; gap: 6px; margin-right: 10px; }
-    .dots i { width: 8px; height: 8px; display: block; border-radius: 50%; background: #ff6b6b; }
-    .dots i:nth-child(2) { background: #ffc46b; } .dots i:nth-child(3) { background: #65d69a; }
-    .terminal-body { padding: 22px; font: 13px/2 Consolas, monospace; color: #c6d2e2; }
-    .prompt { color: var(--green); } .command { color: var(--blue); }
-    section { padding: 65px 0; border-top: 1px solid rgba(255,255,255,.06); }
-    .section-head { margin-bottom: 28px; }
-    .section-head h2 { margin: 7px 0; font-size: 32px; letter-spacing: -1px; }
-    .section-head p { color: var(--muted); margin: 0; }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .card { background: var(--surface); border: 1px solid var(--line); padding: 22px; border-radius: 12px; }
-    .card .number { color: var(--green); font: 12px Consolas, monospace; }
-    .card h3 { margin: 10px 0 6px; font-size: 18px; }
-    .card p { color: var(--muted); font-size: 14px; margin: 0; }
-    .command-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .terminal-top {
+      padding: 15px 18px;
+      border-bottom: 1px solid #303047;
+      color: #a5a5bd;
+      font-size: 12px;
+    }
+
+    .dots {
+      display: inline-flex;
+      gap: 6px;
+      margin-right: 10px;
+    }
+
+    .dots i {
+      width: 9px;
+      height: 9px;
+      display: block;
+      border-radius: 50%;
+      background: #ff6b6b;
+    }
+
+    .dots i:nth-child(2) {
+      background: #ffc46b;
+    }
+
+    .dots i:nth-child(3) {
+      background: #65d69a;
+    }
+
+    .terminal-body {
+      padding: 24px;
+      font: 13px/2 Consolas, monospace;
+      color: #d4d4e6;
+    }
+
+    .prompt {
+      color: #65dba8;
+    }
+
+    .command {
+      color: #9d96ff;
+    }
+
+    .green {
+      color: #65dba8;
+    }
+
+    /* Sections */
+
+    section {
+      padding: 75px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      margin-bottom: 32px;
+    }
+
+    .section-head h2 {
+      margin: 8px 0;
+      font-size: 34px;
+      letter-spacing: -1.2px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Cards */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 25px;
+      border-radius: 14px;
+      transition: .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--secondary);
+      box-shadow: 0 12px 30px rgba(30,30,80,.06);
+    }
+
+    .card .number {
+      color: var(--primary);
+      font: 12px Consolas, monospace;
+      font-weight: bold;
+    }
+
+    .card h3 {
+      margin: 12px 0 7px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Commands */
+
+    .command-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
     .command-item {
-      background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-      padding: 15px 17px; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
     }
-    .command-item code { color: var(--blue); font: 13px Consolas, monospace; }
-    .command-item small { color: var(--muted); display: block; margin-top: 4px; }
+
+    .command-item code {
+      color: var(--primary);
+      font: 13px Consolas, monospace;
+      font-weight: bold;
+    }
+
+    .command-item small {
+      color: var(--muted);
+      display: block;
+      margin-top: 5px;
+    }
+
     .copy {
-      border: 1px solid var(--line); background: var(--surface-2); color: var(--text);
-      border-radius: 6px; padding: 6px 9px; cursor: pointer; font-size: 12px;
+      border: none;
+      background: var(--surface-2);
+      color: var(--primary);
+      border-radius: 7px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12px;
     }
-    .copy:hover { border-color: var(--blue); }
+
+    .copy:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Workflow */
+
     .workflow {
-      display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
-      background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 30px;
     }
-    .step { background: var(--surface-2); border: 1px solid #33445c; padding: 11px 15px; border-radius: 8px; font: 13px Consolas, monospace; }
-    .arrow { color: var(--green); }
-    .practice { background: linear-gradient(120deg, #11261f, #111722 65%); border: 1px solid #285340; border-radius: 14px; padding: 28px; }
-    .practice h3 { margin-top: 0; font-size: 22px; }
-    pre { background: #080d14; padding: 18px; overflow-x: auto; border-radius: 9px; color: #c9d8e9; border: 1px solid #263244; font: 13px/1.8 Consolas, monospace; }
-    .green { color: var(--green); }
-    footer { border-top: 1px solid rgba(255,255,255,.07); padding: 25px 0; color: var(--muted); font-size: 13px; }
-    footer .container { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+
+    .step {
+      background: var(--surface-2);
+      color: var(--primary);
+      border: 1px solid #e4e0ff;
+      padding: 12px 16px;
+      border-radius: 9px;
+      font: 13px Consolas, monospace;
+    }
+
+    .arrow {
+      color: var(--accent);
+      font-size: 20px;
+    }
+
+    /* Practice */
+
+    .practice {
+      background: linear-gradient(120deg, #eeebff, #f5f7ff);
+      border: 1px solid #ded9ff;
+      border-radius: 16px;
+      padding: 30px;
+    }
+
+    .practice h3 {
+      margin-top: 0;
+      font-size: 23px;
+    }
+
+    pre {
+      background: var(--dark);
+      padding: 20px;
+      overflow-x: auto;
+      border-radius: 10px;
+      color: #d4d4e6;
+      font: 13px/1.9 Consolas, monospace;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 27px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .version {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 5px 11px;
+      border-radius: 20px;
+      background: #e8e5ff;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* Responsive */
+
     @media (max-width: 760px) {
-      .hero { grid-template-columns: 1fr; padding: 65px 0; gap: 35px; }
-      .cards { grid-template-columns: 1fr; }
-      .command-list { grid-template-columns: 1fr; }
-      .nav-links { gap: 13px; font-size: 12px; }
-      h1 { letter-spacing: -2px; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 65px 0;
+        gap: 40px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .command-list {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 13px;
+        font-size: 12px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
     }
-    @media (max-width: 430px) { .nav-links a:nth-child(2) { display: none; } }
+
+    @media (max-width: 430px) {
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      .workflow {
+        padding: 18px;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <nav class="container">
     <a class="brand" href="#">anshad<span>.</span>dev</a>
+
     <div class="nav-links">
       <a href="#about">About Git</a>
       <a href="#commands">Commands</a>
@@ -110,132 +442,303 @@
   </nav>
 
   <main>
+
     <div class="container hero">
+
       <div>
-        <div class="eyebrow">DevOps learning project / 01</div>
-        <h1>Learning Git.<br><span>Building better</span><br>workflows.</h1>
-        <p>A hands-on learning page about Git, version control, and the workflow DevOps engineers use to manage application code and prepare it for deployment.</p>
+        <div class="eyebrow">DevOps Learning Project / 01</div>
+
+        <h1>
+          Learn Git.<br>
+          <span>Build smarter</span><br>
+          workflows.
+        </h1>
+
+        <p>
+          A hands-on learning page about Git, version control,
+          and the workflow DevOps engineers use to manage
+          application code and prepare it for deployment.
+        </p>
+
         <div class="actions">
-          <a class="btn primary" href="#commands">Explore Git commands ↗</a>
-          <a class="btn secondary" href="#practice">Start practice</a>
+          <a class="btn primary" href="#commands">
+            Explore Git commands ↗
+          </a>
+
+          <a class="btn secondary" href="#practice">
+            Start practice
+          </a>
+        </div>
+
+        <div class="version">
+          VERSION 2.0 — WEBHOOK DEPLOYMENT TEST
         </div>
       </div>
+
       <div class="terminal">
-        <div class="terminal-top"><span class="dots"><i></i><i></i><i></i></span> ec2-user@devops-lab: ~/git-project</div>
+
+        <div class="terminal-top">
+          <span class="dots"><i></i><i></i><i></i></span>
+          ec2-user@devops-lab: ~/git-project
+        </div>
+
         <div class="terminal-body">
-          <div><span class="prompt">$</span> <span class="command">git init</span></div>
+
+          <div><span class="prompt">$</span>
+            <span class="command">git init</span>
+          </div>
+
           <div>Initialized empty Git repository</div>
-          <div><span class="prompt">$</span> <span class="command">git add .</span></div>
-          <div><span class="prompt">$</span> <span class="command">git commit -m "first commit"</span></div>
-          <div class="green">[main (root-commit)] first commit</div>
-          <div><span class="prompt">$</span> <span class="command">git status</span></div>
-          <div class="green">nothing to commit, working tree clean</div>
-          <div><span class="prompt">$</span> <span class="command">_</span></div>
+
+          <div><span class="prompt">$</span>
+            <span class="command">git add .</span>
+          </div>
+
+          <div><span class="prompt">$</span>
+            <span class="command">git commit -m "new theme"</span>
+          </div>
+
+          <div class="green">
+            [main] Updated portfolio design
+          </div>
+
+          <div><span class="prompt">$</span>
+            <span class="command">git push origin main</span>
+          </div>
+
+          <div class="green">
+            Successfully pushed to GitHub
+          </div>
+
+          <div><span class="prompt">$</span>
+            <span class="command">_</span>
+          </div>
+
         </div>
       </div>
     </div>
 
     <section id="about">
+
       <div class="container">
+
         <div class="section-head">
           <div class="eyebrow">01 / The basics</div>
           <h2>What is Git?</h2>
-          <p>Git is a distributed version control system that tracks changes in source code.</p>
+          <p>
+            Git is a distributed version control system
+            that tracks changes in source code.
+          </p>
         </div>
+
         <div class="cards">
-          <article class="card"><div class="number">01 — TRACK</div><h3>Track every change</h3><p>See what changed in your project, when it changed, and which commit introduced it.</p></article>
-          <article class="card"><div class="number">02 — COLLABORATE</div><h3>Work as a team</h3><p>Developers can work on separate branches and combine their work safely.</p></article>
-          <article class="card"><div class="number">03 — RECOVER</div><h3>Keep project history</h3><p>Review previous versions and investigate problems without losing the project history.</p></article>
+
+          <article class="card">
+            <div class="number">01 — TRACK</div>
+            <h3>Track every change</h3>
+            <p>
+              See what changed in your project, when it changed,
+              and which commit introduced it.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">02 — COLLABORATE</div>
+            <h3>Work as a team</h3>
+            <p>
+              Developers can work on separate branches
+              and combine their work safely.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="number">03 — RECOVER</div>
+            <h3>Keep project history</h3>
+            <p>
+              Review previous versions and investigate
+              problems without losing project history.
+            </p>
+          </article>
+
         </div>
       </div>
     </section>
 
     <section id="commands">
+
       <div class="container">
+
         <div class="section-head">
           <div class="eyebrow">02 / Command reference</div>
           <h2>Git commands to know</h2>
-          <p>Use the copy buttons to copy a command while practising in your terminal.</p>
+          <p>
+            Use the copy buttons to copy a command
+            while practising in your terminal.
+          </p>
         </div>
+
         <div class="command-list">
-          <div class="command-item"><div><code>git init</code><small>Start a repository</small></div><button class="copy" data-copy="git init">Copy</button></div>
-          <div class="command-item"><div><code>git status</code><small>Check file changes</small></div><button class="copy" data-copy="git status">Copy</button></div>
-          <div class="command-item"><div><code>git add .</code><small>Stage all changes</small></div><button class="copy" data-copy="git add .">Copy</button></div>
-          <div class="command-item"><div><code>git commit -m "message"</code><small>Save a snapshot</small></div><button class="copy" data-copy='git commit -m "message"'>Copy</button></div>
-          <div class="command-item"><div><code>git log --oneline</code><small>View commit history</small></div><button class="copy" data-copy="git log --oneline">Copy</button></div>
-          <div class="command-item"><div><code>git branch</code><small>List branches</small></div><button class="copy" data-copy="git branch">Copy</button></div>
-          <div class="command-item"><div><code>git switch -c feature</code><small>Create and switch branch</small></div><button class="copy" data-copy="git switch -c feature">Copy</button></div>
-          <div class="command-item"><div><code>git push</code><small>Send commits to remote</small></div><button class="copy" data-copy="git push">Copy</button></div>
-          <div class="command-item"><div><code>git pull</code><small>Fetch and integrate changes</small></div><button class="copy" data-copy="git pull">Copy</button></div>
-          <div class="command-item"><div><code>git clone URL</code><small>Copy a remote repository</small></div><button class="copy" data-copy="git clone URL">Copy</button></div>
+
+          <div class="command-item">
+            <div><code>git init</code><small>Start a repository</small></div>
+            <button class="copy" data-copy="git init">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git status</code><small>Check file changes</small></div>
+            <button class="copy" data-copy="git status">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git add .</code><small>Stage all changes</small></div>
+            <button class="copy" data-copy="git add .">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git commit -m "message"</code><small>Save a snapshot</small></div>
+            <button class="copy" data-copy='git commit -m "message"'>Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git log --oneline</code><small>View commit history</small></div>
+            <button class="copy" data-copy="git log --oneline">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git branch</code><small>List branches</small></div>
+            <button class="copy" data-copy="git branch">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git switch -c feature</code><small>Create and switch branch</small></div>
+            <button class="copy" data-copy="git switch -c feature">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git push</code><small>Send commits to remote</small></div>
+            <button class="copy" data-copy="git push">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git pull</code><small>Fetch and integrate changes</small></div>
+            <button class="copy" data-copy="git pull">Copy</button>
+          </div>
+
+          <div class="command-item">
+            <div><code>git clone URL</code><small>Copy a remote repository</small></div>
+            <button class="copy" data-copy="git clone URL">Copy</button>
+          </div>
+
         </div>
       </div>
     </section>
 
     <section>
+
       <div class="container">
+
         <div class="section-head">
           <div class="eyebrow">03 / DevOps workflow</div>
           <h2>From code to deployment</h2>
-          <p>Git is one part of the delivery process. A CI/CD pipeline can automate the steps that follow.</p>
+          <p>
+            Git is one part of the delivery process.
+            A CI/CD pipeline can automate the steps that follow.
+          </p>
         </div>
+
         <div class="workflow">
-          <span class="step">Developer code</span><b class="arrow">→</b>
-          <span class="step">Git commit</span><b class="arrow">→</b>
-          <span class="step">GitHub</span><b class="arrow">→</b>
-          <span class="step">CI/CD pipeline</span><b class="arrow">→</b>
+
+          <span class="step">Developer code</span>
+          <b class="arrow">→</b>
+
+          <span class="step">Git commit</span>
+          <b class="arrow">→</b>
+
+          <span class="step">GitHub</span>
+          <b class="arrow">→</b>
+
+          <span class="step">CI/CD pipeline</span>
+          <b class="arrow">→</b>
+
           <span class="step">EC2 deployment</span>
+
         </div>
       </div>
     </section>
 
     <section id="practice">
+
       <div class="container">
+
         <div class="section-head">
           <div class="eyebrow">04 / Hands-on lab</div>
           <h2>Your first Git practice</h2>
-          <p>Run these commands inside a test folder on your EC2 instance or local machine.</p>
+          <p>
+            Run these commands inside a test folder
+            on your EC2 instance or local machine.
+          </p>
         </div>
+
         <div class="practice">
-          <h3><span class="green">$</span> Create your first repository</h3>
+
+          <h3>
+            <span class="green">$</span>
+            Create your first repository
+          </h3>
+
           <pre><code>mkdir my-first-git-project
 cd my-first-git-project
-
 git init
-
 echo "Hello DevOps! Learning Git." > index.html
-
 git status
 git add .
 git commit -m "Add first HTML page"
-
 git log --oneline</code></pre>
-          <p>After the commit, run <code>git status</code> again. You should see a clean working tree if all changes were committed.</p>
+
+          <p>
+            After the commit, run <code>git status</code> again.
+            You should see a clean working tree if all changes
+            were committed.
+          </p>
+
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>
+
     <div class="container">
       <span>© 2026 Anshad — DevOps Learning Portfolio</span>
-      <span>Built with HTML, CSS & a little JavaScript.</span>
+      <span>Built with HTML, CSS & JavaScript.</span>
     </div>
+
   </footer>
 
   <script>
     document.querySelectorAll(".copy").forEach(button => {
+
       button.addEventListener("click", async () => {
+
         const command = button.dataset.copy;
+
         try {
           await navigator.clipboard.writeText(command);
           button.textContent = "Copied!";
-          setTimeout(() => button.textContent = "Copy", 1200);
+
+          setTimeout(() => {
+            button.textContent = "Copy";
+          }, 1200);
+
         } catch {
           button.textContent = "Select command";
         }
+
       });
+
     });
   </script>
+
 </body>
 </html>
